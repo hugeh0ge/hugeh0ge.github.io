@@ -80,7 +80,7 @@
     </header>
     <div class="entry">
       
-        <p>I always wonder if there is any good solution for I/O blocking on local exploit.<br>I tried <code>sock.setblocking(False)</code> and <code>fcntl(fd, F_SETFL, flag | O_NONBLOCK)</code>, but both didn’t work.<br>pexpect module does non-blocking read(maybe it’s because of tty), but its output contains junk and input become corrupted(doesn’t support binary data?).<br>So please tell me if you know something.</p>
+        <p>I always wonder if there is any good solution for I/O blocking on local exploit.<br>I tried <code>sock.setblocking(False)</code> and <code>fcntl(fd, F_SETFL, flag | O_NONBLOCK)</code>, but both didn’t work.<br>pexpect module does non-blocking read(maybe it’s because of tty), but its output contains junk and input becomes corrupted(doesn’t support binary data?).<br>So please tell me if you know something.</p>
 <p>exploit(consequently I did without reading): <a href="https://gist.github.com/potetisensei/9af8150d66031035cc10" target="_blank" rel="external">https://gist.github.com/potetisensei/9af8150d66031035cc10</a></p>
 
       
