@@ -70,6 +70,81 @@
     <header>
       
   
+    <h1 class="title"><a href="/2015/11/30/Search-Engine-9447-2015/">Search Engine - 9447 2015</a></h1>
+  
+
+      
+        <p class="published">
+          Published: <time datetime="2015-11-30T12:25:42.000Z">Nov 30 2015</time>
+        </p>
+      
+    </header>
+    <div class="entry">
+      
+        <p>I’ve participated in 9447 CTF 2015 as the team scryptos.<br>Though I hadn’t been a member of scryptos, I felt like helping them by participating together because they remind me of what my team used to be.<br>I had to contribute to the team somehow, so I solved the heavy pwn task, Search Engine.</p>
+<h2 id="Description">Description</h2>
+<blockquote>
+<p>Ever wanted to search through real life? Well this won’t help, but it will let you search strings.<br>Find it at search-engine-qgidg858.9447.plumbing port 9447.</p>
+</blockquote>
+<h2 id="Introduction">Introduction</h2>
+<p>Search Engine is quite a simple service which can register a sentence with the word list splitting it into words by ‘ ‘ and can search those sentences with a word.</p>
+<p>The available commands are:</p>
+<ol>
+<li>Search with a word: Search the registered sentences such that they contain the given word.</li>
+<li>Index a sentence: Register the given sentence into the word list creating nodes for every word the sentence contains.</li>
+<li>Quit: Simply <code>return;</code></li>
+</ol>
+<p>Here is the main parts of the implementation:</p>
+<script src="https://gist.github.com/potetisensei/5cee0bba95730805728b.js"></script>
+
+<p>The vulnerability is self-evident: a typical UAF of <code>node1-&gt;sentence</code> caused by sharing <code>node1-&gt;sentence</code> with other nodes.<br>Let’s call this fundamental UAF “UAF1”.<br>Then, we can easily “spread” UAF to <code>node2</code> by overlapping <code>node1-&gt;sentence</code> and <code>node2</code> with UAF1 and then deleting <code>node1-&gt;sentence</code> again(I call this technique “UAF spreading”).<br>Let’s call this secondary UAF “UAF2”.<br>With UAF2, we can set all the members of <code>struct WordList</code> to any value.<br>Therefore we can leak an arbitrary address because <code>node2-&gt;sentence</code> will be output in <code>SearchWord(void)</code>.<br>Yes, as you may see, this task is very typical and easy so far.<br>The problem is how to get ACE from here, for there is no process of re-inputting in <code>node2-&gt;sentence</code> once we create <code>node2</code>.<br>That means, at least, we cannot write an arbitrary value to an arbitrary address by UAF2 alone.</p>
+<h2 id="Observation">Observation</h2>
+<p>I consider it important to use a logical thinking process in writing exploits, so I’d like to write about what I thought at that moment although a concise article would be better.<br>First, I made a listing of what I could do using UAF2.<br><a href="http://wapiflapi.github.io/2015/04/22/single-null-byte-heap-overflow/" target="_blank" rel="external"><em>“What do I control?”</em></a> is a significant question.</p>
+<ul>
+<li>Leak an arbitrary address at any length: as described above.</li>
+<li>Overwrite an arbitrary address at any length by ‘\x00’: <code>memset(node-&gt;sentence, 0, node-&gt;sentence_size)</code> does in line 53. However, because <code>free(node-&gt;sentence)</code> is always called after that, it must be crash when we pass the address which is not within a heap. </li>
+<li>Free an arbitrary address: we tend to pay attention to <code>memset</code>, but we also have the ability to free any address as we want. This actually is the key point.</li>
+</ul>
+<p>Second, before thinking how to get ACE, I specified the libc used in this task by leaking because environment-dependent exploits might work and because we always should set up the environment as similar to the actual environment as possible for writing exploits. Then, it turned out that the libc is a ordinary libc-2.19 used in Ubuntu.</p>
+<p>Third, I considered whether the null-byte overwrite could be used. Because of the restriction that passing non-heap addresses causes crash, the possible ways are to overwrite free@got.plt before it gets crash and to use heap addresses so that it won’t get crash. I realized the former couldn’t be used by checking the libc. And the latter actually could be useful because its situation was little different from that of <a href="http://wapiflapi.github.io/2015/04/22/single-null-byte-heap-overflow/" target="_blank" rel="external">plaiddb</a>. It, however, was very complicated and I wanted a simpler method. So I gave up to use this overwrite.</p>
+<p>Fourth, I focused on the third characteristic “Free an arbitrary address”. It is usually useless because to free invalid addresses causes abortion. But under a particular condition, it can work and becomes very useful. The condition is that an freed address is recognized as the chunk of fastbins. I hadn’t thought it could work, but I got confidence after I hit upon this idea and experimented with it. </p>
+<h2 id="Solution">Solution</h2>
+<script src="https://gist.github.com/potetisensei/ae2dda885b2395f6e799.js"></script>
+
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+<!-- hackish -->
+
+
+  <article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+  
     <h1 class="title"><a href="/2015/08/20/Codeforces-Beta-Round-44-Div-2/">Codeforces Beta Round #44 (Div. 2)</a></h1>
   
 
