@@ -39,30 +39,30 @@
 <div class="clearfix"></div>
 </header>
 
+  <div id="content" class="inner">
+    <div id="wrapper"><article class="post">
 
-      <div class="outer">
-        <section id="main"><article id="post-Getting-Arbitrary-Code-Execution-from-fopen-s-2nd-Argument" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/04/Getting-Arbitrary-Code-Execution-from-fopen-s-2nd-Argument/" class="article-date">
-  <time datetime="2019-11-04T12:04:32.000Z" itemprop="datePublished">2019-11-04</time>
-</a>
-    
+    <div class="gallery">
+  <div class="photoset">
+
+      <img src="">
+
   </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Getting Arbitrary Code Execution from fopen&#39;s 2nd Argument
-    </h1>
-  
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+  </div>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
+  <div class="post-content">
+    <header>
+    <h1 class="title">Getting Arbitrary Code Execution from fopen&#39;s 2nd Argument</h1>
+    <p class="published">
+    Published: <time datetime="2019-11-04T12:04:32.000Z">Nov 4 2019</time>
+    </p>
+   </header>
+  <div class="entry">
+
         <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>Recently I was in charge of setting problems of CODE BLUE CTF 2019 Finals.<br>One of my problems, Wire Hetimarl was “weird” in the sense that you had to give an eye to the 2nd argument of <code>fopen</code> (that is, a mode like <code>rb</code>) for the perfect solution.<br>How can that argument, which is seemingly and almost always useless for exploitation, be a trigger point?<br>Here, let me show you an example.</p>
 <p>First, let’s put the following two files under <code>/home/user</code> :</p>
 <figure class="highlight c"><figcaption><span>gconv-modules</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span>  PAYLOAD<span class="comment">//    INTERNAL    ../../../../../../../../home/user/payload    2</span></span><br><span class="line"><span class="keyword">module</span>  <span class="literal">INTERNAL</span>    PAYLOAD<span class="comment">//    ../../../../../../../../home/user/payload    2</span></span><br></pre></td></tr></table></figure>
@@ -112,103 +112,43 @@
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://hugeh0ge.github.io/2019/11/04/Getting-Arbitrary-Code-Execution-from-fopen-s-2nd-Argument/" data-id="ck2kh1pwy0000xjbe5veogfxt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/" rel="tag">pwn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/" rel="tag">writeup</a></li></ul>
+    <footer>
 
+      <div class="clearfix"></div>
     </footer>
   </div>
-  
-    
-  
 </article>
+<!-- hackish -->
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn/" rel="tag">pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/writeup/" rel="tag">writeup</a></li></ul>
-    </div>
+</div>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+
+  <div class="tags">
+    tags: <a href="/tags/ctf/">ctf</a>, <a href="/tags/pwn/">pwn</a>, <a href="/tags/writeup/">writeup</a>
   </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/ctf/" style="font-size: 10px;">ctf</a> <a href="/tags/pwn/" style="font-size: 10px;">pwn</a> <a href="/tags/writeup/" style="font-size: 10px;">writeup</a>
-    </div>
-  </div>
+  <br>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
-    </div>
-  </div>
+  &copy; 2019 Yuki Koike
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/11/04/Getting-Arbitrary-Code-Execution-from-fopen-s-2nd-Argument/">Getting Arbitrary Code Execution from fopen&#39;s 2nd Argument</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 Yuki Koike<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
+</div>
+<div class="clearfix"></div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+  <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
 
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
 </body>
 </html>
+
